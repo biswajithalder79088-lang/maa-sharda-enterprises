@@ -2,39 +2,61 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MAA SHARDA ENTERPRISES</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f5f8;color:#222}
-header{background:linear-gradient(135deg,#172554,#7c2d12);color:white;padding:28px 18px;text-align:center}
-header h1{font-size:25px;margin:5px}
-header p{margin:8px;font-size:13px}
-.tag{color:#facc15;font-size:12px}
-.search{padding:16px}
-input{width:100%;padding:14px;border:1px solid #ddd;border-radius:10px;font-size:15px}
-h2{padding:0 16px;font-size:19px}
-.empty{margin:16px;background:white;padding:25px;border-radius:12px;text-align:center;color:#666}
-footer{text-align:center;padding:25px;color:#666;font-size:13px}
-.whatsapp{display:block;margin:18px;background:#168b48;color:white;padding:15px;text-align:center;text-decoration:none;border-radius:10px;font-weight:bold}
+body{margin:0;background:#f3f4f6;font-family:Arial;color:#222}
+header{background:linear-gradient(135deg,#172554,#7c2d12);color:white;text-align:center;padding:25px 12px}
+header h1{font-size:23px;margin:8px 0}
+header p{font-size:12px}
+.search{padding:15px}
+input{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;font-size:16px}
+h2{padding:0 15px}
+#products{padding:12px;display:grid;gap:12px}
+.product{background:white;padding:16px;border-radius:12px;box-shadow:0 2px 8px #ddd}
+.product h3{margin:0 0 10px;color:#172554}
+.price{color:#168b48;font-weight:bold;font-size:19px}
+.mrp{color:#666;font-size:14px}
+footer{text-align:center;padding:20px;color:#666}
 </style>
 </head>
 <body>
 <header>
-<div class="tag">WELCOME TO</div>
 <h1>MAA SHARDA ENTERPRISES</h1>
 <p>A WHOLESALE DEALER OF GENERIC & OTC PRODUCTS</p>
 </header>
 <div class="search">
-<input type="text" id="search" placeholder="Search products...">
+<input id="search" placeholder="Search products..." oninput="showProducts()">
 </div>
 <h2>Our Products</h2>
-<div class="empty" id="products">
-Products will appear here soon.
-</div>
-<a class="whatsapp" href="https://wa.me/917908806161">
-ORDER NOW ON WHATSAPP
-</a>
-<footer>MAA SHARDA ENTERPRISES<br>Thank you for your trust ❤️</footer>
+<div id="products">Loading products...</div>
+<footer>MAA SHARDA ENTERPRISES</footer>
+<script>
+const API="https://script.google.com/macros/s/AKfycbw4oqWdtMt_55ojyq1qhMY96qdXXmzZGcWTT5k8wv83PeWqQN8_R-_8ut4GTUsD61XD6w/exec";
+let products=[];
+async function loadProducts(){
+try{
+const response=await fetch(API);
+products=await response.json();
+showProducts();
+}catch(error){
+document.getElementById("products").innerHTML="Products could not load. Please try again.";
+}
+}
+function showProducts(){
+const term=document.getElementById("search").value.toLowerCase();
+const filtered=products.filter(p=>(p.name||"").toLowerCase().includes(term));
+document.getElementById("products").innerHTML=filtered.length?filtered.map(p=>`
+<div class="product">
+<h3>${p.name}</h3>
+<div class="mrp">MRP: ₹${p.mrp}</div>
+<div class="price">Net Rate: ₹${p.netRate}</div>
+<p>Stock: ${p.stock||"Not updated"}</p>
+<p>Category: ${p.category||"Other"}</p>
+</div>`).join(""):"No products found.";
+}
+loadProducts();
+</script>
 </body>
 </html>
