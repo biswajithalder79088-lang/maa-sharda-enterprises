@@ -44,18 +44,25 @@ showProducts();
 document.getElementById("products").innerHTML="Products could not load. Please try again.";
 }
 }
+
 function showProducts(){
 const term=document.getElementById("search").value.toLowerCase();
 const filtered=products.filter(p=>(p.name||"").toLowerCase().includes(term));
-document.getElementById("products").innerHTML=filtered.length?filtered.map(p=>`
+
+document.getElementById("products").innerHTML=filtered.length?
+filtered.map(p=>`
 <div class="product">
 <h3>${p.name}</h3>
 <div class="mrp">MRP: ₹${p.mrp}</div>
 <div class="price">Net Rate: ₹${p.netRate}</div>
 <p>Stock: ${p.stock||"Not updated"}</p>
 <p>Category: ${p.category||"Other"}</p>
+<a href="https://wa.me/917908806161?text=${encodeURIComponent("Hello Maa Sharda Enterprises, I want to order: "+p.name+". Net Rate: Rs. "+p.netRate)}" style="display:block;background:#168b48;color:white;padding:12px;text-align:center;border-radius:8px;text-decoration:none;font-weight:bold">
+ORDER ON WHATSAPP
+</a>
 </div>`).join(""):"No products found.";
 }
+
 loadProducts();
 </script>
 </body>
