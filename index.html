@@ -45,23 +45,42 @@ document.getElementById("products").innerHTML="Products could not load. Please t
 }
 }
 
+
 function showProducts(){
 const term=document.getElementById("search").value.toLowerCase();
 const filtered=products.filter(p=>(p.name||"").toLowerCase().includes(term));
 
 document.getElementById("products").innerHTML=filtered.length?
-filtered.map(p=>`
+filtered.map(p=>{
+const i=products.indexOf(p);
+return `
 <div class="product">
 <h3>${p.name}</h3>
 <div class="mrp">MRP: ₹${p.mrp}</div>
 <div class="price">Net Rate: ₹${p.netRate}</div>
 <p>Stock: ${p.stock||"Not updated"}</p>
 <p>Category: ${p.category||"Other"}</p>
-<a href="https://wa.me/917908806161?text=${encodeURIComponent("Hello Maa Sharda Enterprises, I want to order: "+p.name+". Net Rate: Rs. "+p.netRate)}" style="display:block;background:#168b48;color:white;padding:12px;text-align:center;border-radius:8px;text-decoration:none;font-weight:bold">
+<label>Quantity:</label>
+<input type="number" id="qty${i}" min="1" value="1">
+<button onclick="orderProduct(${i})"
+style="display:block;width:100%;margin-top:12px;background:#168b48;color:white;padding:13px;border:0;border-radius:8px;font-weight:bold">
 ORDER ON WHATSAPP
-</a>
-</div>`).join(""):"No products found.";
+</button>
+</div>`;
+}).join(""):"No products found.";
 }
+
+function orderProduct(index){
+const p=products[index];
+const qty=document.getElementById("qty"+index).value;
+if(!qty || Number(qty)<1){
+alert("Please enter a valid quantity");
+return;
+}
+const message="Hello Maa Sharda Enterprises, I want to order:\nProduct: "+p.name+"\nNet Rate: Rs. "+p.netRate+"\nQuantity: "+qty;
+window.location.href="https://wa.me/917908806161?text="+encodeURIComponent(message);
+  }
+  
 
 loadProducts();
 </script>
