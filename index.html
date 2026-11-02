@@ -1,32 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MAA SHARDA ENTERPRISES</title>
 <style>
-body{font-family:Arial;margin:0;background:#f4f4f4;text-align:center}
-header{background:#142d50;color:white;padding:30px 10px}
-h1{font-size:25px}
-.card{background:white;margin:20px;padding:25px;border-radius:15px}
-button{background:#16834b;color:white;border:0;padding:14px 25px;border-radius:8px;font-size:17px}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f5f8;color:#222}
+header{background:linear-gradient(135deg,#172554,#7c2d12);color:white;padding:28px 18px;text-align:center}
+header h1{font-size:25px;margin:5px}
+header p{margin:8px;font-size:13px}
+.tag{color:#facc15;font-size:12px}
+.search{padding:16px}
+input{width:100%;padding:14px;border:1px solid #ddd;border-radius:10px;font-size:15px}
+h2{padding:0 16px;font-size:19px}
+.empty{margin:16px;background:white;padding:25px;border-radius:12px;text-align:center;color:#666}
+footer{text-align:center;padding:25px;color:#666;font-size:13px}
+.whatsapp{display:block;margin:18px;background:#168b48;color:white;padding:15px;text-align:center;text-decoration:none;border-radius:10px;font-weight:bold}
 </style>
 </head>
 <body>
 <header>
+<div class="tag">WELCOME TO</div>
 <h1>MAA SHARDA ENTERPRISES</h1>
-<p>Wholesale Generic & OTC Products</p>
+<p>A WHOLESALE DEALER OF GENERIC & OTC PRODUCTS</p>
 </header>
-<div class="card">
-<h2>Welcome Customer!</h2>
-<p>Order your products easily.</p>
-<button onclick="orderWhatsApp()">Order on WhatsApp</button>
+<div class="search">
+<input type="text" id="search" placeholder="Search products...">
 </div>
-<script>
-function orderWhatsApp(){
-let phone="917908806161";
-let message="Hello Maa Sharda Enterprises, I want to place an order.";
-window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message),"_blank");
-}
-</script>
+<h2>Our Products</h2>
+<div class="empty" id="products">
+Products will appear here soon.
+</div>
+<a class="whatsapp" href="https://wa.me/917908806161">
+ORDER NOW ON WHATSAPP
+</a>
+<footer>MAA SHARDA ENTERPRISES<br>Thank you for your trust ❤️</footer>
 </body>
 </html>
