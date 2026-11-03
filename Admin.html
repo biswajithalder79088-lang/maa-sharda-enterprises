@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAA SHARDA ADMIN</title>
+<style>
+body{font-family:Arial;background:#101b35;color:white;
+display:flex;justify-content:center;align-items:center;
+min-height:100vh;margin:0}
+.box{background:#fff;color:#222;padding:25px;
+border-radius:15px;width:85%;max-width:350px;text-align:center}
+input,button{width:100%;padding:13px;margin-top:15px;
+box-sizing:border-box;border-radius:8px}
+input{border:1px solid #ccc}
+button{background:#168b48;color:white;border:0;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>MAA SHARDA ENTERPRISES</h2>
+<h3>ADMIN PANEL</h3>
+<p>Administrator Login</p>
+<input type="password" id="password" placeholder="Enter Admin Password">
+<button onclick="login()">LOGIN</button>
+<p id="message"></p>
+</div>
+<script>
+function login(){
+document.getElementById("message").textContent=
+"Login system setup pending. Secure authentication is required.";
+}
+</script>
+</body>
+</html>
