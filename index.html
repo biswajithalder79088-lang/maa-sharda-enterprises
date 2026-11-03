@@ -4,200 +4,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101010">
 <title>MAA SHARDA ENTERPRISES</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#101010;color:#fff;font-family:Arial,sans-serif}
-header{
-background:linear-gradient(135deg,#080808,#382a12);
-text-align:center;padding:25px 12px;
-border-bottom:2px solid #d4a94e
-}
-.logo{
-width:65px;height:65px;border:2px solid #d4a94e;
-border-radius:50%;display:grid;place-items:center;
-margin:auto;color:#edc76f;font-size:25px;font-weight:bold
-}
-header h1{font-size:22px;color:#edc76f;margin:10px 0}
-header p{font-size:11px;color:#eee}
-.banner{
-margin:15px;padding:22px 12px;text-align:center;
-border:1px solid #c69b42;border-radius:13px;
-background:linear-gradient(135deg,#30230e,#151515)
-}
-.banner h2{color:#edc76f;margin:0 0 8px}
-.banner p{font-size:13px;margin:0}
-h2.title{color:#edc76f;padding:0 15px;font-size:19px}
-.controls{padding:0 15px}
-input,select{
-width:100%;padding:12px;margin:6px 0;
-background:#222;color:white;border:1px solid #a9843b;
-border-radius:8px;font-size:15px
-}
-#products{
-display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-gap:12px;padding:12px
-}
-.product{
-background:linear-gradient(145deg,#292929,#151515);
-border:1px solid #66502b;border-radius:12px;padding:10px;
-min-width:0
-}
-.product img{
-width:100%;height:125px;object-fit:contain;
-background:white;border-radius:8px;margin-bottom:8px
-}
-.product h3{font-size:14px;color:#edc76f;min-height:32px}
-.mrp{font-size:12px;color:#ddd;margin:7px 0}
-.price{color:#edc76f;font-size:17px;font-weight:bold}
-.stock{font-size:11px;color:#ccc}
-.order{
-width:100%;background:linear-gradient(90deg,#b8862b,#f5d27a);
-color:#17120a;border:0;border-radius:8px;
-padding:12px 4px;font-weight:bold;margin-top:10px
-}
-footer{
-text-align:center;padding:22px 10px;
-border-top:1px solid #80612d;color:#d9b866;
-font-size:12px;line-height:1.8
-}
-@media(max-width:340px){#products{grid-template-columns:1fr}}
+body{margin:0;background:#101010;color:white;font-family:Arial}
+header{text-align:center;background:#050505;padding:18px;border-bottom:2px solid #d4af37}
+.logo{width:110px;height:110px;margin:auto;border:2px solid #d4af37;border-radius:50%;overflow:hidden;background:#111}
+.logo img{width:100%;height:100%;object-fit:contain}
+h1{color:#e5c45b;font-size:22px;margin:10px 0}
+.tagline{font-size:12px;color:#ddd}
+.banner{text-align:center;padding:18px;background:linear-gradient(120deg,#302000,#111);color:#f5d778;font-weight:bold}
+.container{padding:14px}
+input,select{width:100%;padding:12px;margin:7px 0;border:1px solid #c9a63b;border-radius:8px;background:#202020;color:white}
+#products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}
+.card{background:#1b1b1b;border:1px solid #9e802c;border-radius:12px;padding:10px;text-align:center}
+.card img{width:100%;height:115px;object-fit:contain;background:white;border-radius:8px}
+.card h3{color:#f1d16b;font-size:15px;min-height:34px}
+.price{font-size:13px;line-height:1.8}
+.rate{color:#f5d36b;font-size:17px;font-weight:bold}
+.stock{color:#9be39b;font-size:12px}
+.qty{width:75px;text-align:center}
+.order{width:100%;background:#d4af37;color:#111;border:0;padding:10px;border-radius:7px;font-weight:bold;margin-top:8px}
+.empty{grid-column:1/-1;text-align:center;padding:25px}
+footer{text-align:center;padding:20px;color:#d4af37;font-size:12px}
 </style>
 </head>
 <body>
 
 <header>
-<div class="logo">MS</div>
+<div class="logo">
+<img src="file_00000000445c8211b245621e12e06bc3.png" alt="MSE Maa Durga Logo">
+</div>
 <h1>MAA SHARDA ENTERPRISES</h1>
-<p>A WHOLESALE DEALER OF GENERIC & OTC PRODUCTS</p>
-<p>Quality Products • Trusted Service</p>
+<div class="tagline">A WHOLESALE DEALER OF GENERIC & OTC PRODUCTS</div>
 </header>
 
-<div class="banner">
-<h2>WELCOME TO OUR STORE</h2>
-<p>Your trusted destination for Generic & OTC Products</p>
-<p style="color:#edc76f;margin-top:10px">SPECIAL OFFERS • BEST DEALS</p>
-</div>
+<div class="banner">PREMIUM PRODUCTS • BEST DEALS</div>
 
-<h2 class="title">OUR PRODUCT CATALOGUE</h2>
-
-<div class="controls">
+<div class="container">
 <input id="search" placeholder="Search products..." oninput="showProducts()">
+
 <select id="category" onchange="showProducts()">
-<option value="">All Categories</option>
+<option value="all">All Categories</option>
 <option value="generic">Generic</option>
 <option value="otc">OTC</option>
 </select>
+
+<div id="products"><div class="empty">Loading Products...</div></div>
 </div>
 
-<div id="products">Loading products...</div>
-
 <footer>
-<strong>MAA SHARDA ENTERPRISES</strong><br>
-WHATSAPP ORDER AVAILABLE<br>
-Customer Order: +91 7908806161<br>
-Thank You For Choosing Us!
+MAA SHARDA ENTERPRISES<br>
+Quality Products • Trusted Service<br>
+Order on WhatsApp
 </footer>
 
 <script>
-const API="https://script.google.com/macros/s/AKfycbw4oqWdtMt_55ojyq1qhMY96qdXXmzZGcWTT5k8wv83PeWqQN8_R-_8ut4GTUsD61XD6w/exec";
+const API_URL="https://script.google.com/macros/s/AKfycbw4oqWdtMt_55ojyq1qhMY96qdXXmzZGcWTT5k8wv83PeWqQN8_R-_8ut4GTUsD61XD6w/exec";
+const WHATSAPP_NUMBER="917908806161";
+let allProducts=[];
 
-const WHATSAPP="917908806161";
-let products=[];
+function val(p,keys){
+ for(const k of keys){
+  if(p[k]!==undefined && p[k]!==null)return p[k];
+ }
+ return "";
+}
 
 async function loadProducts(){
-try{
-const response=await fetch(API);
-const data=await response.json();
-products=Array.isArray(data)?data:(data.products||data.data||[]);
-showProducts();
-}catch(error){
-document.getElementById("products").innerHTML=
-"<p>Products could not load. Please try again.</p>";
-}
-}
-
-function safe(value){
-return String(value??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-})[c]);
+ const box=document.getElementById("products");
+ try{
+  const res=await fetch(API_URL);
+  const data=await res.json();
+  allProducts=Array.isArray(data)?data:(data.products||data.data||[]);
+  showProducts();
+ }catch(e){
+  box.innerHTML='<div class="empty">Products load হচ্ছে না। পরে আবার চেষ্টা করুন।</div>';
+ }
 }
 
 function showProducts(){
-const term=document.getElementById("search").value.toLowerCase();
-const cat=document.getElementById("category").value.toLowerCase();
+ const box=document.getElementById("products");
+ const search=document.getElementById("search").value.toLowerCase();
+ const category=document.getElementById("category").value;
+ box.innerHTML="";
 
-const filtered=products.filter(p=>
-String(p.name||"").toLowerCase().includes(term)&&
-(!cat||String(p.category||"").toLowerCase()===cat)
-);
+ const filtered=allProducts.filter(p=>{
+  const name=String(val(p,["name","product name","productName"])).toLowerCase();
+  const cat=String(val(p,["category","catagory","Category"])).toLowerCase();
+  return name.includes(search)&&(category==="all"||cat===category);
+ });
 
-const box=document.getElementById("products");
+ if(!filtered.length){
+  box.innerHTML='<div class="empty">No products found</div>';
+  return;
+ }
 
-if(!filtered.length){
-box.innerHTML="<p>No products found.</p>";
-return;
+ filtered.forEach(p=>{
+  const name=val(p,["name","product name","productName"]);
+  const mrp=val(p,["mrp","MRP"]);
+  const rate=val(p,["netRate","net rate","net_rate","Net Rate"]);
+  const stock=val(p,["stock","Stock"]);
+  const photo=val(p,["photo","photoURL","photoUrl","image","photo URL"]);
+
+  const card=document.createElement("div");
+  card.className="card";
+
+  if(photo){
+   const img=document.createElement("img");
+   img.src=photo;
+   img.alt=name;
+   img.onerror=()=>img.style.display="none";
+   card.appendChild(img);
+  }
+
+  const title=document.createElement("h3");
+  title.textContent=name;
+  card.appendChild(title);
+
+  const price=document.createElement("div");
+  price.className="price";
+  price.innerHTML='<div>MRP: ₹'+mrp+'</div><div class="rate">Net Rate: ₹'+rate+'</div><div class="stock">Stock: '+stock+'</div>';
+  card.appendChild(price);
+
+  const qty=document.createElement("input");
+  qty.className="qty";
+  qty.type="number";
+  qty.min="1";
+  qty.value="1";
+  card.appendChild(qty);
+
+  const btn=document.createElement("button");
+  btn.className="order";
+  btn.textContent="ORDER ON WHATSAPP";
+  btn.onclick=()=>placeOrder(name,mrp,rate,qty.value);
+  card.appendChild(btn);
+
+  box.appendChild(card);
+ });
 }
 
-box.innerHTML=filtered.map(p=>{
-const i=products.indexOf(p);
-const photo=p.photo||p.photoURL||p.photoUrl||p.image||p["photo URL"]||"";
+function placeOrder(name,mrp,rate,quantity){
+ quantity=Number(quantity);
+ if(!Number.isInteger(quantity)||quantity<1){
+  alert("Please enter valid quantity");
+  return;
+ }
 
-return `
-<div class="product">
-${photo?`<img src="${safe(photo)}" onerror="this.style.display='none'">`:''}
-<h3>${safe(p.name)}</h3>
-<div class="mrp">MRP: ₹${safe(p.mrp)}</div>
-<div class="price">Net Rate: ₹${safe(p.netRate)}</div>
-<p class="stock">Stock: ${safe(p.stock||"Not updated")}</p>
-<p class="stock">Category: ${safe(p.category||"Other")}</p>
-<label>Quantity:</label>
-<input type="number" id="qty${i}" min="1" value="1">
-<button class="order" onclick="orderProduct(${i})">
-ORDER ON WHATSAPP
-</button>
-</div>`;
-}).join("");
+ const customer=prompt("Enter your name:");
+ if(!customer)return;
+ const mobile=prompt("Enter your mobile number:");
+ if(!mobile)return;
+ const address=prompt("Enter your delivery address:");
+ if(!address)return;
+
+ const total=Number(rate)*quantity;
+ const message=
+ "MAA SHARDA ENTERPRISES - NEW ORDER\n\n"+
+ "Customer: "+customer+"\n"+
+ "Mobile: "+mobile+"\n"+
+ "Address: "+address+"\n\n"+
+ "Product: "+name+"\n"+
+ "MRP: Rs. "+mrp+"\n"+
+ "Net Rate: Rs. "+rate+"\n"+
+ "Quantity: "+quantity+"\n"+
+ "Total: Rs. "+total;
+
+ window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
 }
-
-function orderProduct(index){
-const p=products[index];
-const qty=Number(document.getElementById("qty"+index).value);
-
-if(!qty||qty<1){
-alert("Please enter a valid quantity");
-return;
-}
-
-const name=prompt("আপনার নাম লিখুন:");
-if(!name)return;
-
-const mobile=prompt("আপনার মোবাইল নম্বর লিখুন:");
-if(!mobile)return;
-
-const address=prompt("আপনার ঠিকানা লিখুন:");
-if(!address)return;
-
-const total=(Number(p.netRate)||0)*qty;
-
-const message=
-`NEW ORDER - MAA SHARDA ENTERPRISES
-
-Customer: ${name}
-Mobile: ${mobile}
-Address: ${address}
-
-Product: ${p.name}
-MRP: Rs. ${p.mrp}
-Net Rate: Rs. ${p.netRate}
-Quantity: ${qty}
-Total: Rs. ${total}`;
-
-window.location.href=
-"https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(message);
-}
-
 loadProducts();
 </script>
 </body>
