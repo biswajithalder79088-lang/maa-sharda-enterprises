@@ -1,68 +1,148 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MAA SHARDA ENTERPRISES</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#101010;color:white;font-family:Arial}
-header{text-align:center;background:#050505;padding:18px;border-bottom:2px solid #d4af37}
-.logo{width:110px;height:110px;margin:auto;border:2px solid #d4af37;border-radius:50%;overflow:hidden;background:#111}
+body{
+ margin:0;background:#101010;color:white;
+ font-family:Arial,sans-serif
+}
+header{
+ text-align:center;background:#050505;
+ padding:18px;border-bottom:2px solid #d4af37
+}
+.logo{
+ width:110px;height:110px;margin:auto;
+ border:2px solid #d4af37;border-radius:50%;
+ overflow:hidden;background:#111
+}
 .logo img{width:100%;height:100%;object-fit:contain}
 h1{color:#e5c45b;font-size:22px;margin:10px 0}
 .tagline{font-size:12px;color:#ddd}
-.banner{text-align:center;padding:18px;background:linear-gradient(120deg,#302000,#111);color:#f5d778;font-weight:bold}
+.banner{
+ text-align:center;padding:18px;
+ background:linear-gradient(120deg,#302000,#111);
+ color:#f5d778;font-weight:bold
+}
 .container{padding:14px}
-input,select{width:100%;padding:12px;margin:7px 0;border:1px solid #c9a63b;border-radius:8px;background:#202020;color:white}
-#products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:15px}
-.card{background:#1b1b1b;border:1px solid #9e802c;border-radius:12px;padding:10px;text-align:center}
-.card img{width:100%;height:115px;object-fit:contain;background:white;border-radius:8px}
-.card h3{color:#f1d16b;font-size:15px;min-height:34px}
+input,select{
+ width:100%;padding:12px;margin:7px 0;
+ border:1px solid #c9a63b;border-radius:8px;
+ background:#202020;color:white
+}
+#products{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:12px;margin-top:15px
+}
+.card{
+ background:#1b1b1b;border:1px solid #9e802c;
+ border-radius:12px;padding:10px;text-align:center
+}
+.card img{
+ width:100%;height:115px;object-fit:contain;
+ background:white;border-radius:8px
+}
+.card h3{
+ color:#f1d16b;font-size:15px;min-height:34px
+}
 .price{font-size:13px;line-height:1.8}
 .rate{color:#f5d36b;font-size:17px;font-weight:bold}
 .stock{color:#9be39b;font-size:12px}
 .qty{width:75px;text-align:center}
-.order{width:100%;background:#d4af37;color:#111;border:0;padding:10px;border-radius:7px;font-weight:bold;margin-top:8px}
-.empty{grid-column:1/-1;text-align:center;padding:25px}
-footer{text-align:center;padding:20px;color:#d4af37;font-size:12px}
+.order{
+ width:100%;background:#d4af37;color:#111;
+ border:0;padding:11px;border-radius:7px;
+ font-weight:bold;margin-top:8px
+}
+.remove{
+ background:#922;color:white;border:0;
+ padding:7px 12px;border-radius:6px;margin-top:6px
+}
+.cartbox{
+ margin:14px;padding:14px;
+ background:#1b1b1b;border:1px solid #d4af37;
+ border-radius:12px
+}
+.cartitem{
+ padding:10px 0;border-bottom:1px solid #555;
+ font-size:14px
+}
+.total{
+ color:#f5d36b;font-size:20px;
+ font-weight:bold;margin-top:15px
+}
+.empty{
+ grid-column:1/-1;text-align:center;padding:25px
+}
+footer{
+ text-align:center;padding:20px;
+ color:#d4af37;font-size:12px
+}
+@media(max-width:350px){
+ #products{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="logo">
- <img src="https://biswajithalder79088-lang.github.io/maa-sharda-enterprises/file_00000000445c8211b245621e12e06bc3.png" alt="MSE Maa Durga Logo">
-
-<h1>MAA SHARDA ENTERPRISES</h1>
-<div class="tagline">A WHOLESALE DEALER OF GENERIC & OTC PRODUCTS</div>
+ <div class="logo">
+  <img src="https://biswajithalder79088-lang.github.io/maa-sharda-enterprises/file_00000000445c8211b245621e12e06bc3.png" alt="MSE Logo">
+ </div>
+ <h1>MAA SHARDA ENTERPRISES</h1>
+ <div class="tagline">
+ A WHOLESALE DEALER OF GENERIC & OTC PRODUCTS
+ </div>
 </header>
 
-<div class="banner">PREMIUM PRODUCTS • BEST DEALS</div>
+<div class="banner">
+ PREMIUM PRODUCTS • BEST DEALS
+</div>
 
 <div class="container">
-<input id="search" placeholder="Search products..." oninput="showProducts()">
+ <input id="search" placeholder="Search products..." oninput="showProducts()">
 
-<select id="category" onchange="showProducts()">
-<option value="all">All Categories</option>
-<option value="generic">Generic</option>
-<option value="otc">OTC</option>
-</select>
+ <select id="category" onchange="showProducts()">
+  <option value="all">All Categories</option>
+  <option value="generic">Generic</option>
+  <option value="otc">OTC</option>
+ </select>
 
-<div id="products"><div class="empty">Loading Products...</div></div>
+ <div id="products">
+  <div class="empty">Loading Products...</div>
+ </div>
+</div>
+
+<div class="cartbox" id="cart">
+ <h2 style="color:#e5c45b">🛒 MY SHOPPING CART</h2>
+ <div id="cartItems">Your cart is empty</div>
+ <div class="total" id="cartTotal">Total: ₹0</div>
+ <button class="order" onclick="checkoutCart()">
+  ORDER ALL ON WHATSAPP
+ </button>
+ <button class="remove" onclick="clearCart()">
+  CLEAR CART
+ </button>
 </div>
 
 <footer>
-MAA SHARDA ENTERPRISES<br>
-Quality Products • Trusted Service<br>
-Order on WhatsApp
+ MAA SHARDA ENTERPRISES<br>
+ Quality Products • Trusted Service<br>
+ Order on WhatsApp
 </footer>
 
 <script>
 const API_URL="https://script.google.com/macros/s/AKfycbw4oqWdtMt_55ojyq1qhMY96qdXXmzZGcWTT5k8wv83PeWqQN8_R-_8ut4GTUsD61XD6w/exec";
+
 const WHATSAPP_NUMBER="917908806161";
+
 let allProducts=[];
+let cart=[];
 
 function val(p,keys){
  for(const k of keys){
@@ -75,8 +155,12 @@ async function loadProducts(){
  const box=document.getElementById("products");
  try{
   const res=await fetch(API_URL);
+  if(!res.ok)throw new Error("API error");
   const data=await res.json();
-  allProducts=Array.isArray(data)?data:(data.products||data.data||[]);
+
+  allProducts=Array.isArray(data)
+   ?data:(data.products||data.data||[]);
+
   showProducts();
  }catch(e){
   box.innerHTML='<div class="empty">Products load হচ্ছে না। পরে আবার চেষ্টা করুন।</div>';
@@ -87,6 +171,7 @@ function showProducts(){
  const box=document.getElementById("products");
  const search=document.getElementById("search").value.toLowerCase();
  const category=document.getElementById("category").value;
+
  box.innerHTML="";
 
  const filtered=allProducts.filter(p=>{
@@ -101,7 +186,7 @@ function showProducts(){
  }
 
  filtered.forEach(p=>{
-  const name=val(p,["name","product name","productName"]);
+  const name=String(val(p,["name","product name","productName"]));
   const mrp=val(p,["mrp","MRP"]);
   const rate=val(p,["netRate","net rate","net_rate","Net Rate"]);
   const stock=val(p,["stock","Stock"]);
@@ -124,55 +209,157 @@ function showProducts(){
 
   const price=document.createElement("div");
   price.className="price";
-  price.innerHTML='<div>MRP: ₹'+mrp+'</div><div class="rate">Net Rate: ₹'+rate+'</div><div class="stock">Stock: '+stock+'</div>';
+  price.innerHTML=
+   '<div>MRP: ₹'+mrp+'</div>'+
+   '<div class="rate">Net Rate: ₹'+rate+'</div>'+
+   '<div class="stock">Stock: '+stock+'</div>';
   card.appendChild(price);
 
   const qty=document.createElement("input");
   qty.className="qty";
   qty.type="number";
   qty.min="1";
+  qty.step="1";
   qty.value="1";
   card.appendChild(qty);
 
   const btn=document.createElement("button");
   btn.className="order";
-  btn.textContent="ORDER ON WHATSAPP";
-  btn.onclick=()=>placeOrder(name,mrp,rate,qty.value);
+  btn.textContent="ADD TO CART";
+  btn.onclick=()=>addToCart(name,mrp,rate,qty.value);
   card.appendChild(btn);
 
   box.appendChild(card);
  });
 }
 
-function placeOrder(name,mrp,rate,quantity){
+function addToCart(name,mrp,rate,quantity){
  quantity=Number(quantity);
+
  if(!Number.isInteger(quantity)||quantity<1){
   alert("Please enter valid quantity");
   return;
  }
 
+ const price=Number(rate);
+ if(!Number.isFinite(price)){
+  alert("Product price is not valid");
+  return;
+ }
+
+ const existing=cart.find(item=>item.name===name);
+
+ if(existing){
+  existing.quantity+=quantity;
+ }else{
+  cart.push({
+   name:name,
+   mrp:mrp,
+   rate:price,
+   quantity:quantity
+  });
+ }
+
+ showCart();
+ alert(name+" added to cart!");
+}
+
+function showCart(){
+ const box=document.getElementById("cartItems");
+ box.innerHTML="";
+
+ if(cart.length===0){
+  box.textContent="Your cart is empty";
+ }else{
+  cart.forEach((item,index)=>{
+   const div=document.createElement("div");
+   div.className="cartitem";
+
+   const info=document.createElement("div");
+   info.textContent=
+    item.name+" | ₹"+item.rate+
+    " × "+item.quantity+
+    " = ₹"+(item.rate*item.quantity);
+
+   const remove=document.createElement("button");
+   remove.className="remove";
+   remove.textContent="REMOVE";
+   remove.onclick=()=>{
+    cart.splice(index,1);
+    showCart();
+   };
+
+   div.appendChild(info);
+   div.appendChild(remove);
+   box.appendChild(div);
+  });
+ }
+
+ const total=cart.reduce(
+  (sum,item)=>sum+(item.rate*item.quantity),0
+ );
+
+ document.getElementById("cartTotal").textContent=
+  "Total: ₹"+total.toFixed(2);
+}
+
+function checkoutCart(){
+ if(cart.length===0){
+  alert("Your cart is empty. Please add products first.");
+  return;
+ }
+
  const customer=prompt("Enter your name:");
  if(!customer)return;
+
  const mobile=prompt("Enter your mobile number:");
  if(!mobile)return;
+
  const address=prompt("Enter your delivery address:");
  if(!address)return;
 
- const total=Number(rate)*quantity;
- const message=
- "MAA SHARDA ENTERPRISES - NEW ORDER\n\n"+
- "Customer: "+customer+"\n"+
- "Mobile: "+mobile+"\n"+
- "Address: "+address+"\n\n"+
- "Product: "+name+"\n"+
- "MRP: Rs. "+mrp+"\n"+
- "Net Rate: Rs. "+rate+"\n"+
- "Quantity: "+quantity+"\n"+
- "Total: Rs. "+total;
+ let message=
+  "MAA SHARDA ENTERPRISES - NEW ORDER\n\n"+
+  "Customer: "+customer+"\n"+
+  "Mobile: "+mobile+"\n"+
+  "Address: "+address+"\n\n"+
+  "ORDER DETAILS:\n";
 
- window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
+ let total=0;
+
+ cart.forEach((item,index)=>{
+  const amount=item.rate*item.quantity;
+  total+=amount;
+
+  message+=
+   (index+1)+". "+item.name+"\n"+
+   "MRP: Rs. "+item.mrp+"\n"+
+   "Net Rate: Rs. "+item.rate+"\n"+
+   "Quantity: "+item.quantity+"\n"+
+   "Amount: Rs. "+amount.toFixed(2)+"\n\n";
+ });
+
+ message+="GRAND TOTAL: Rs. "+total.toFixed(2);
+
+ const url=
+  "https://wa.me/"+WHATSAPP_NUMBER+
+  "?text="+encodeURIComponent(message);
+
+ window.open(url,"_blank");
 }
+
+function clearCart(){
+ if(cart.length===0)return;
+
+ if(confirm("Are you sure you want to clear the cart?")){
+  cart=[];
+  showCart();
+ }
+}
+
 loadProducts();
+showCart();
 </script>
+
 </body>
 </html>
