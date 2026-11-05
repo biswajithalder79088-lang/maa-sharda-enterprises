@@ -344,7 +344,24 @@ function checkoutCart(){
  const url=
   "https://wa.me/"+WHATSAPP_NUMBER+
   "?text="+encodeURIComponent(message);
+const orderHistory = JSON.parse(
+  localStorage.getItem("maaShardaOrderHistory") || "[]"
+);
 
+orderHistory.unshift({
+  date: new Date().toLocaleString(),
+  customer: customer,
+  mobile: mobile,
+  address: address,
+  items: JSON.parse(JSON.stringify(cart)),
+  total: total,
+  status: "WhatsApp Order Prepared"
+});
+
+localStorage.setItem(
+  "maaShardaOrderHistory",
+  JSON.stringify(orderHistory)
+);
  window.open(url,"_blank");
 }
 
