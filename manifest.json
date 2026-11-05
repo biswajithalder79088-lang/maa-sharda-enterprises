@@ -1,1 +1,16 @@
-
+{
+  "name": "MAA SHARDA ENTERPRISES",
+  "short_name": "Maa Sharda",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#120b0b",
+  "theme_color": "#8b0000",
+  "icons": [
+    {
+      "src": "maa_sharda_enterprises_logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
