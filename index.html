@@ -426,6 +426,62 @@ function logoutCustomer() {
   } catch(e) {}
 })();
 </script>
- 
+ <!-- CUSTOMER ORDER HISTORY -->
+<div class="cartbox">
+  <h2 style="color:#e5c45b">📦 MY ORDER HISTORY</h2>
+  <div id="orderHistoryList">
+    No previous orders found.
+  </div>
+  <button class="order" onclick="showOrderHistory()">
+    REFRESH ORDER HISTORY
+  </button>
+</div>
+
+<script>
+function showOrderHistory() {
+  const box = document.getElementById("orderHistoryList");
+  const orders = JSON.parse(
+    localStorage.getItem("maaShardaOrderHistory") || "[]"
+  );
+
+  box.innerHTML = "";
+
+  if (orders.length === 0) {
+    box.textContent = "No previous orders found.";
+    return;
+  }
+
+  orders.forEach((order, index) => {
+    const div = document.createElement("div");
+    div.className = "cartitem";
+
+    const title = document.createElement("h3");
+    title.style.color = "#f5d36b";
+    title.textContent = "Order #" + (index + 1);
+
+    const details = document.createElement("p");
+    details.textContent =
+      "Date: " + order.date +
+      " | Customer: " + order.customer +
+      " | Total: ₹" + Number(order.total).toFixed(2) +
+      " | Status: " + order.status;
+
+    div.appendChild(title);
+    div.appendChild(details);
+
+    order.items.forEach(item => {
+      const p = document.createElement("p");
+      p.textContent =
+        item.name + " × " + item.quantity +
+        " = ₹" + (item.rate * item.quantity).toFixed(2);
+      div.appendChild(p);
+    });
+
+    box.appendChild(div);
+  });
+}
+
+showOrderHistory();
+</script>
 </body>
 </html>
