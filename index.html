@@ -361,5 +361,54 @@ loadProducts();
 showCart();
 </script>
 
+<!-- MAA SHARDA CUSTOMER PROFILE -->
+<div id="customerProfile" style="background:#111;color:#fff;padding:18px;margin:15px;border-radius:12px;border:1px solid #c9a227;">
+  <h3 style="color:#e5bd55;">Customer Login / Profile</h3>
+  <input id="cpName" placeholder="Customer Name" style="width:95%;padding:10px;margin:6px 0;">
+  <input id="cpMobile" placeholder="Mobile Number" type="tel" style="width:95%;padding:10px;margin:6px 0;">
+  <textarea id="cpAddress" placeholder="Delivery Address" style="width:95%;padding:10px;margin:6px 0;"></textarea>
+  <button onclick="saveCustomerProfile()" style="padding:12px;background:#c9a227;color:#111;border:0;border-radius:6px;">Save Profile</button>
+  <button onclick="logoutCustomer()" style="padding:12px;background:#555;color:white;border:0;border-radius:6px;">Logout</button>
+  <p id="cpMessage"></p>
+</div>
+
+<script>
+function saveCustomerProfile() {
+  const profile = {
+    name: document.getElementById("cpName").value.trim(),
+    mobile: document.getElementById("cpMobile").value.trim(),
+    address: document.getElementById("cpAddress").value.trim()
+  };
+
+  if (!profile.name || !profile.mobile || !profile.address) {
+    document.getElementById("cpMessage").textContent = "Please fill all details.";
+    return;
+  }
+
+  localStorage.setItem("maaShardaCustomer", JSON.stringify(profile));
+  document.getElementById("cpMessage").textContent = "Profile saved successfully!";
+}
+
+function logoutCustomer() {
+  localStorage.removeItem("maaShardaCustomer");
+  document.getElementById("cpName").value = "";
+  document.getElementById("cpMobile").value = "";
+  document.getElementById("cpAddress").value = "";
+  document.getElementById("cpMessage").textContent = "Logged out.";
+}
+
+(function loadCustomerProfile() {
+  const saved = localStorage.getItem("maaShardaCustomer");
+  if (!saved) return;
+  try {
+    const p = JSON.parse(saved);
+    document.getElementById("cpName").value = p.name || "";
+    document.getElementById("cpMobile").value = p.mobile || "";
+    document.getElementById("cpAddress").value = p.address || "";
+    document.getElementById("cpMessage").textContent = "Saved profile loaded.";
+  } catch(e) {}
+})();
+</script>
+ 
 </body>
 </html>
